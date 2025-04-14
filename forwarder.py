@@ -16,7 +16,7 @@ def run_flask():
 api_id = 21656727
 api_hash = '561e1c275ae2a89cc2b8670bb1a3a178'
 
-client = TelegramClient('forwarder_session_6756', api_id, api_hash)
+client = TelegramClient('forwarder_session', api_id, api_hash)
 
 target_group_id = -4720268824
 source_bot_username = 'HUMOcardbot'
