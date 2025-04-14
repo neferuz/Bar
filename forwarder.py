@@ -19,15 +19,17 @@ api_hash = '561e1c275ae2a89cc2b8670bb1a3a178'
 client = TelegramClient('forwarder_session', api_id, api_hash)
 
 target_group_id = -4720268824
-source_bot_username = 'HUMOcardbot'
 
 # Множество для хранения хэшей обработанных сообщений
 handled_messages = set()
 
-@client.on(events.NewMessage(from_users=source_bot_username))
+@client.on(events.NewMessage(incoming=True))  # Ловим все входящие
 async def handler(event):
     text = event.raw_text.strip()
     message_hash = hash(text)
+
+    print("🔔 Получено сообщение:")
+    print(text)
 
     # Фильтрация: только пополнение по карте *6756 и ещё не отправлялось
     if message_hash not in handled_messages and '🎉 Пополнение' in text and '💳 HUMOCARD *6756' in text:
